@@ -1,14 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import {
-  ArrowDown,
   ArrowRight,
+  Award,
   Check,
   ChefHat,
+  Clock3,
   Gift,
-  Heart,
   MessageCircle,
+  Shield,
   ShieldCheck,
+  ShoppingCart,
   Sparkles,
   X,
 } from "lucide-react";
@@ -114,9 +116,7 @@ function Index() {
   return (
     <main>
       <div className="announcement">
-        <Sparkles size={14} aria-hidden="true" />
-        <span>Esta promoção acaba hoje · 26/11/2026</span>
-        <Sparkles size={14} aria-hidden="true" />
+        <span>Esta promoção acaba hoje - 26/11/2026</span>
       </div>
 
       <header className="site-header">
@@ -134,28 +134,11 @@ function Index() {
 
       <section className="hero" id="inicio">
         <div className="hero-copy">
-          <span className="eyebrow"><span /> LIVRO DIGITAL · MATERIAL EM PDF</span>
-          <h1>150 biscoitos e doces natalinos <em>com utensílios simples.</em></h1>
+          <h1>150 BISCOITOS E DOCES NATALINOS<span>COM UTENSÍLIOS SIMPLES</span></h1>
           <p className="hero-lede">
-            <strong>Seu guia para um Natal cheio de sabor.</strong><br />
-            Biscoitos, brigadeiros e trufas com passo a passo ilustrado.
+            <strong>Seu guia para um Natal cheio de sabor.</strong>
+            <span>Biscoitos, brigadeiros e trufas com passo a passo ilustrado.</span>
           </p>
-          <div className="hero-offer">
-            <span className="hero-old-price">De R$ 97,00</span>
-            <span className="hero-price-label">POR APENAS</span>
-            <span className="hero-price"><small>R$</small>14<sup>,90</sup></span>
-          </div>
-          <div className="hero-actions">
-            <a className="button button-primary" href="#colecoes">
-              Quero minhas receitas de Natal <ArrowRight size={17} />
-            </a>
-            <a className="text-link" href="#receitas"><ArrowDown size={15} /> Ver algumas receitas</a>
-          </div>
-          <div className="hero-proof">
-            <span className="proof-item"><ShieldCheck size={15} /><strong>Acesso imediato</strong></span>
-            <span className="proof-item"><ShieldCheck size={15} /><strong>Compra 100% segura</strong></span>
-            <span className="proof-item"><ShieldCheck size={15} /><strong>7 dias de garantia</strong></span>
-          </div>
         </div>
         <div className="hero-visual">
           <div className="hero-image-wrap">
@@ -165,8 +148,24 @@ function Index() {
               fetchPriority="high"
             />
           </div>
-          <div className="image-note"><span>receitas ilustradas</span><Heart size={15} fill="currentColor" /></div>
-          <div className="hero-stamp"><strong>150</strong><span>receitas<br />de Natal</span></div>
+        </div>
+        <div className="hero-purchase">
+          <div className="hero-offer">
+            <span className="hero-old-price">De R$ 97,00</span>
+            <span className="hero-price-label">POR APENAS</span>
+            <span className="hero-price"><small>R$</small>14<sup>,90</sup></span>
+          </div>
+          <div className="hero-actions">
+            <a className="button button-primary" href="#colecoes">
+              <ShoppingCart size={23} aria-hidden="true" />
+              QUERO MINHAS RECEITAS DE NATAL
+            </a>
+          </div>
+          <div className="hero-proof">
+            <span className="proof-item"><Clock3 size={17} /><strong>ACESSO IMEDIATO</strong></span>
+            <span className="proof-item"><Shield size={17} /><strong>COMPRA 100% SEGURA</strong></span>
+            <span className="proof-item proof-item-guarantee"><Award size={17} /><strong>7 DIAS DE GARANTIA</strong></span>
+          </div>
         </div>
       </section>
 
@@ -401,5 +400,6 @@ function Index() {
     </main>
   );
 }
+
 
 
