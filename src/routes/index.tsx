@@ -3,11 +3,13 @@ import { useEffect, useState } from "react";
 import {
   ArrowDown,
   ArrowRight,
+  BookOpen,
   Check,
   ChefHat,
-  Clock3,
   Gift,
   Heart,
+  MessageCircle,
+  Printer,
   ShieldCheck,
   Sparkles,
   X,
@@ -15,35 +17,46 @@ import {
 
 const asset = "/images/natal/";
 
-const recipes = [
-  {
-    name: "Pinheirinhos de baunilha",
-    category: "BISCOITOS",
-    image: "receita-01-pinheirinhos-de-baunilha.webp",
-  },
-  {
-    name: "Sinos de canela",
-    category: "BISCOITOS",
-    image: "receita-02-sinos-de-canela.webp",
-  },
-  {
-    name: "Guirlandas de coco",
-    category: "ESPECIAIS",
-    image: "receita-03-guirlandas-de-coco.webp",
-  },
-  {
-    name: "Guirlandas de chocolate e laranja",
-    category: "PARA PRESENTEAR",
-    image: "receita-04-guirlandas-de-chocolate-com-laranja.webp",
-  },
+const recipes: [string, string, string][] = [
+  ["Pinheirinhos de baunilha", "BISCOITOS", "receita-01-pinheirinhos-de-baunilha.webp"],
+  ["Sinos de canela", "BISCOITOS", "receita-02-sinos-de-canela.webp"],
+  ["Guirlandas de coco", "BISCOITOS", "receita-03-guirlandas-de-coco.webp"],
+  ["Guirlandas de chocolate com laranja", "BISCOITOS", "receita-04-guirlandas-de-chocolate-com-laranja.webp"],
+  ["Flocos de neve de limão", "BISCOITOS", "receita-05-flocos-de-neve-de-limao-com-acucar.webp"],
+  ["Guirlandas de laranja e coco", "BISCOITOS", "receita-06-guirlandas-de-laranja-com-coco.webp"],
+  ["Guirlandas de coco e gengibre", "BISCOITOS", "receita-07-guirlandas-de-coco-e-gengibre.webp"],
+  ["Brigadeiros com confeitos", "BRIGADEIROS", "receita-08-brigadeiros-bolinhas-de-chocolate-com-confeitos.webp"],
+  ["Brigadeiros de nozes", "BRIGADEIROS", "receita-09-brigadeiros-cubinhos-de-nozes.webp"],
+  ["Brigadeiros com café", "BRIGADEIROS", "receita-10-brigadeiros-gotinhas-de-cafe.webp"],
+  ["Trufas de chocolate branco e cranberry", "TRUFAS", "receita-11-trufas-bolinhas-de-chocolate-branco-e-cranberry.webp"],
+  ["Trufas de café", "TRUFAS", "receita-12-trufas-disquinhos-de-cafe.webp"],
+  ["Trufas de chocolate e avelã", "TRUFAS", "receita-13-trufas-bolinhas-de-chocolate-e-avela.webp"],
 ];
 
-const bonuses = [
-  ["Guia dos biscoitos perfeitos", "bonus-01-guia-biscoitos-perfeitos.webp"],
-  ["Ideias de embalagens natalinas", "bonus-02-embalagens-natalinas.webp"],
-  ["10 kits para vender", "bonus-03-kits-para-vender.webp"],
-  ["Lista de compras inteligente", "bonus-04-lista-compras-inteligente.webp"],
-  ["Guia de substituições", "bonus-05-guia-substituicoes.webp"],
+const bonuses: [string, string, string][] = [
+  ["Guia de Biscoitos Perfeitos", "Orientações ilustradas sobre forno, glacê e secagem.", "bonus-01-guia-biscoitos-perfeitos.webp"],
+  ["Embalagens Natalinas", "6 embalagens, 8 tags e 6 etiquetas para seus doces.", "bonus-02-embalagens-natalinas.webp"],
+  ["10 Kits para Vender", "10 sugestões com quantidades, montagem e fichas de custos.", "bonus-03-kits-para-vender.webp"],
+  ["Lista de Compras Inteligente", "Mapa de ingredientes, 4 listas e fichas de estoque.", "bonus-04-lista-compras-inteligente.webp"],
+  ["Guia de Substituições", "Alternativas e orientações para testar pequenas porções.", "bonus-05-guia-substituicoes.webp"],
+];
+
+const conversations: [string, string][] = [
+  ["Mariana Costa", "depoimento-01-mariana-costa.webp"],
+  ["Juliana Alves", "depoimento-02-juliana-alves.webp"],
+  ["Patrícia Lima", "depoimento-03-patricia-lima.webp"],
+  ["Renata Martins", "depoimento-04-renata-martins.webp"],
+];
+
+const questions: [string, string][] = [
+  ["São 150 receitas mesmo?", "Sim: são 120 receitas de biscoitos, 15 de brigadeiros e 15 de trufas. Todas têm medidas e preparo em 8 etapas ilustradas."],
+  ["Preciso ter experiência em confeitaria?", "Não precisa ser profissional. Acompanhe as imagens e comece pelas decorações mais simples. Alguns acabamentos exigem prática e respeito aos tempos indicados."],
+  ["Preciso de moldes caros ou equipamentos profissionais?", "Não precisa de uma cozinha profissional. Algumas receitas usam cortadores simples, saco de confeitar e corantes. Confira os itens antes de começar."],
+  ["O glacê precisa ser comprado pronto?", "Não. Algumas receitas ensinam o preparo com açúcar de confeiteiro, pó de merengue e água. Siga as medidas e as instruções do fabricante."],
+  ["Como recebo o material?", "Após a confirmação do pagamento, siga as orientações da compra para acessar os PDFs. O material é digital; não há envio de livro físico."],
+  ["Consigo acessar pelo celular?", "Sim. Você pode abrir o material digital no celular, tablet ou computador e também imprimir as páginas para acompanhar na cozinha."],
+  ["Qual é a diferença entre Básica e Premium?", "A edição Básica inclui as 150 receitas. A Premium inclui as receitas e os cinco bônus: guias, embalagens, kits para vender e materiais de organização."],
+  ["E se eu não gostar?", "Você tem 7 dias de garantia. Se não gostar, solicite o reembolso pelo canal indicado na compra, dentro desse prazo."],
 ];
 
 export const Route = createFileRoute("/")({
@@ -97,9 +110,9 @@ function Index() {
       </div>
 
       <header className="site-header">
-        <a className="brand" href="#inicio" aria-label="Natal à mesa — início">
+        <a className="brand" href="#inicio" aria-label="150 receitas de Natal — início">
           <span className="brand-mark"><ChefHat size={20} /></span>
-          <span>Natal <i>à mesa</i></span>
+          <span>150 Receitas <i>de Natal</i></span>
         </a>
         <nav aria-label="Navegação principal">
           <a href="#receitas">As receitas</a>
@@ -110,23 +123,23 @@ function Index() {
 
       <section className="hero" id="inicio">
         <div className="hero-copy">
-          <span className="eyebrow"><span /> 150 receitas para celebrar</span>
-          <h1>O Natal fica mais gostoso quando começa <em>no forno.</em></h1>
+          <span className="eyebrow"><span /> LIVRO DIGITAL · 150 RECEITAS NATALINAS</span>
+          <h1>150 biscoitos e doces natalinos com <em>utensílios simples.</em></h1>
           <p className="hero-lede">
-            Biscoitos, brigadeiros e trufas fáceis de preparar, lindos para presentear e deliciosos para dividir.
+            Seu guia para um Natal cheio de sabor: receitas ilustradas em 8 etapas para preparar, presentear e compartilhar.
           </p>
           <div className="hero-actions">
             <a className="button button-primary" href="#colecoes">
-              Encontrar minha coleção <ArrowRight size={17} />
+              Escolher minha edição <ArrowRight size={17} />
             </a>
             <a className="text-link" href="#receitas"><ArrowDown size={15} /> Ver algumas receitas</a>
           </div>
           <div className="hero-proof">
-            <span className="proof-icon"><Clock3 size={16} /></span>
-            <span><strong>Ingredientes simples</strong><small>e passos descomplicados</small></span>
+            <span className="proof-icon"><BookOpen size={16} /></span>
+            <span><strong>8 etapas ilustradas</strong><small>para acompanhar o preparo</small></span>
             <span className="proof-separator" />
-            <span className="proof-icon"><Heart size={16} /></span>
-            <span><strong>Feitas para compartilhar</strong><small>ou transformar em renda extra</small></span>
+            <span className="proof-icon"><Printer size={16} /></span>
+            <span><strong>Digital e imprimível</strong><small>acesso vitalício ao material</small></span>
           </div>
         </div>
         <div className="hero-visual">
@@ -137,62 +150,78 @@ function Index() {
               fetchPriority="high"
             />
           </div>
-          <div className="image-note"><span>feito com carinho</span><Heart size={15} fill="currentColor" /></div>
-          <div className="hero-stamp"><strong>150</strong><span>ideias para<br />seu Natal</span></div>
+          <div className="image-note"><span>receitas ilustradas</span><Heart size={15} fill="currentColor" /></div>
+          <div className="hero-stamp"><strong>150</strong><span>receitas<br />de Natal</span></div>
         </div>
       </section>
 
       <section className="intro-strip" aria-label="O que você encontra">
-        <span><Check size={16} /> Receitas ilustradas</span>
-        <span><Check size={16} /> Utensílios simples</span>
-        <span><Check size={16} /> Acesso digital</span>
-        <span><Check size={16} /> Pagamento único</span>
+        <span><Check size={16} /> 120 biscoitos</span>
+        <span><Check size={16} /> 15 brigadeiros</span>
+        <span><Check size={16} /> 15 trufas</span>
+        <span><Check size={16} /> PDF para imprimir</span>
       </section>
 
       <section className="recipes-section section-wrap" id="receitas">
         <div className="section-heading">
-          <span className="eyebrow">UMA AMOSTRA DO QUE VEM POR AÍ</span>
-          <h2>Pequenas delícias, <em>grandes memórias.</em></h2>
-          <p>Receitas com ingredientes acessíveis e instruções para deixar cada preparo mais leve.</p>
+          <span className="eyebrow">UM GOSTINHO DO QUE VOCÊ VAI PREPARAR</span>
+          <h2>Seu Natal começa <em>na cozinha.</em></h2>
+          <p>Escolha a receita e acompanhe o preparo pelas imagens.</p>
         </div>
         <div className="recipe-grid">
-          {recipes.map((recipe, index) => (
-            <article className={`recipe-card recipe-card-${index + 1}`} key={recipe.name}>
-              <div className="recipe-image"><img src={`${asset}${recipe.image}`} alt={recipe.name} loading="lazy" /></div>
-              <div className="recipe-caption"><span>{recipe.category}</span><h3>{recipe.name}</h3></div>
+          {recipes.map(([name, category, image], index) => (
+            <article className={`recipe-card recipe-card-${index + 1}`} key={name}>
+              <div className="recipe-image"><img src={`${asset}${image}`} alt={name} loading="lazy" /></div>
+              <div className="recipe-caption"><span>{category}</span><h3>{name}</h3></div>
             </article>
           ))}
         </div>
-        <div className="recipe-count"><Sparkles size={16} /> E estas são só 4 das 150 receitas do guia.</div>
+        <div className="recipe-count"><Sparkles size={16} /> Estas são só 13 das 150 receitas do guia.</div>
       </section>
 
-      <section className="video-section">
-        <div className="video-copy">
-          <span className="eyebrow">UM CONVITE PARA A SUA COZINHA</span>
-          <h2>Preparar também faz parte da celebração.</h2>
-          <p>Receitas ilustradas, instruções claras e ingredientes do dia a dia para aproveitar cada momento na cozinha.</p>
-          <a className="button button-light" href="#colecoes">Ver as coleções <ArrowRight size={17} /></a>
+      <section className="benefits-section">
+        <div className="benefits-title">
+          <span className="eyebrow">DO FORNO PARA A MESA</span>
+          <h2>Para fazer, <em>presentear e vender.</em></h2>
         </div>
-        <div className="video-frame" aria-label="Guirlandas de coco decoradas para o Natal">
-          <img src={`${asset}receita-03-guirlandas-de-coco.webp`} alt="Guirlandas de coco decoradas para o Natal" loading="lazy" />
-          <div className="video-overlay">
-            <span className="poster-note"><Sparkles size={14} /> Feito para compartilhar</span>
-          </div>
+        <div className="benefits-grid">
+          <article><span className="benefit-icon">🍪</span><div><h3>Para fazer</h3><p>Receitas para preparar com utensílios simples e passo a passo ilustrado.</p></div></article>
+          <article><span className="benefit-icon">🎁</span><div><h3>Para presentear</h3><p>Doces natalinos que ficam lindos na mesa e nas embalagens.</p></div></article>
+          <article><span className="benefit-icon">✨</span><div><h3>Para vender</h3><p>Na Premium, organize kits, embalagens, compras e custos.</p></div></article>
         </div>
+      </section>
+
+      <section className="testimonials-section">
+        <div className="section-heading">
+          <span className="eyebrow">CONVERSAS SOBRE AS RECEITAS</span>
+          <h2>Um gostinho de como é <em>fazer em casa.</em></h2>
+          <p>Prévia visual do material de divulgação.</p>
+        </div>
+        <div className="conversation-grid">
+          {conversations.map(([name, image]) => (
+            <figure className="conversation-card" key={name}>
+              <div className="conversation-image"><img src={`${asset}${image}`} alt={`Print ilustrativo de conversa sobre receitas natalinas, ${name}`} loading="lazy" /></div>
+              <figcaption><MessageCircle size={14} /> Exemplo ilustrativo · {name}</figcaption>
+            </figure>
+          ))}
+        </div>
+        <p className="testimonial-disclaimer">As conversas exibidas são ilustrativas e devem ser substituídas por relatos reais antes da publicação como depoimentos de clientes.</p>
       </section>
 
       <section className="bonus-section section-wrap">
         <div className="bonus-intro">
-          <span className="eyebrow">SÓ NA COLEÇÃO COMPLETA</span>
-          <h2>Um pouco mais de carinho em cada detalhe.</h2>
-          <p>Além das receitas, materiais digitais para planejar, presentear e até vender suas criações.</p>
+          <span className="eyebrow">NA EDIÇÃO PREMIUM</span>
+          <h2>Você leva <em>5 bônus exclusivos.</em></h2>
+          <p>Materiais de apoio para acertar o preparo, montar presentes e organizar suas vendas.</p>
         </div>
         <div className="bonus-grid">
-          {bonuses.map(([name, image], index) => (
+          {bonuses.map(([name, description, image], index) => (
             <article className="bonus-card" key={name}>
               <div className="bonus-image"><img src={`${asset}${image}`} alt={name} loading="lazy" /></div>
-              <span className="bonus-number">0{index + 1}</span>
+              <span className="bonus-number">BÔNUS {index + 1}</span>
               <h3>{name}</h3>
+              <p>{description}</p>
+              <span className="bonus-included"><Check size={13} /> Incluído na Premium</span>
             </article>
           ))}
         </div>
@@ -206,46 +235,63 @@ function Index() {
         </div>
         <div className="plans-grid">
           <article className="plan-card">
-            <span className="plan-kicker">PARA COMEÇAR</span>
-            <h3>Coleção Essencial</h3>
-            <p className="plan-description">As 150 receitas para adoçar a sua celebração.</p>
+            <span className="plan-kicker">A EDIÇÃO ESSENCIAL</span>
+            <h3>150 Receitas Natalinas</h3>
+            <p className="plan-description">O livro digital completo para preparar seus doces de Natal.</p>
             <div className="price"><small>R$</small>14<sup>,90</sup></div>
             <span className="payment-note">Pagamento único</span>
             <ul>
-              <li><Check size={16} /> 150 receitas natalinas</li>
-              <li><Check size={16} /> Biscoitos, brigadeiros e trufas</li>
-              <li><Check size={16} /> Ingredientes simples</li>
-              <li><Check size={16} /> Acesso digital</li>
+              <li><Check size={16} /> 120 biscoitos, 15 brigadeiros e 15 trufas</li>
+              <li><Check size={16} /> Livro digital em PDF + versão para imprimir</li>
+              <li><Check size={16} /> 8 etapas ilustradas por receita</li>
+              <li><Check size={16} /> Acesso vitalício após a confirmação</li>
             </ul>
             <button className="button button-outline plan-button" onClick={() => setUpgradeOpen(true)}>
-              Escolher Essencial <ArrowRight size={16} />
+              Quero a edição Básica <ArrowRight size={16} />
             </button>
           </article>
 
           <article className="plan-card plan-card-featured">
-            <div className="plan-ribbon"><Sparkles size={13} /> MAIS COMPLETA</div>
-            <span className="plan-kicker">PARA VIVER E COMPARTILHAR</span>
-            <h3>Coleção Completa</h3>
-            <p className="plan-description">O guia de receitas e 5 materiais extras para acompanhar.</p>
+            <div className="plan-ribbon"><Sparkles size={13} /> MAIS RECOMENDADA</div>
+            <span className="plan-kicker">A EDIÇÃO PREMIUM</span>
+            <h3>150 Receitas Natalinas Completo</h3>
+            <p className="plan-description">O livro digital com todos os materiais extras para acompanhar.</p>
             <div className="price"><small>R$</small>27<sup>,90</sup></div>
             <span className="payment-note">Pagamento único</span>
             <ul>
-              <li><Check size={16} /> Tudo da Coleção Essencial</li>
-              <li><Check size={16} /> Guia dos biscoitos perfeitos</li>
-              <li><Check size={16} /> Embalagens e kits para vender</li>
-              <li><Check size={16} /> Lista de compras e substituições</li>
+              <li><Check size={16} /> Tudo da edição Básica</li>
+              <li><Check size={16} /> Bônus 1 · Guia de Biscoitos Perfeitos</li>
+              <li><Check size={16} /> Bônus 2 · Embalagens Natalinas</li>
+              <li><Check size={16} /> Bônus 3 · 10 Kits para Vender</li>
+              <li><Check size={16} /> Bônus 4 · Lista de Compras Inteligente</li>
+              <li><Check size={16} /> Bônus 5 · Guia de Substituições</li>
             </ul>
             <button className="button button-primary plan-button" onClick={startCheckout}>
-              Quero a Coleção Completa <ArrowRight size={16} />
+              Quero a edição Premium <ArrowRight size={16} />
             </button>
-            <span className="plan-footnote"><Gift size={14} /> 5 materiais extras incluídos</span>
+            <span className="plan-footnote"><Gift size={14} /> 5 bônus digitais incluídos</span>
           </article>
         </div>
         <div className="guarantee"><ShieldCheck size={18} /><span><strong>Você tem 7 dias para decidir.</strong> Se não for para você, é só pedir o reembolso.</span></div>
       </section>
 
+      <section className="faq-section">
+        <div className="section-heading">
+          <span className="eyebrow">TIRE SUAS DÚVIDAS</span>
+          <h2>Perguntas <em>frequentes.</em></h2>
+        </div>
+        <div className="faq-list">
+          {questions.map(([question, answer]) => (
+            <details className="faq-item" key={question}>
+              <summary><span>{question}</span><span className="faq-plus">+</span></summary>
+              <p>{answer}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+
       <footer className="site-footer">
-        <a className="brand" href="#inicio"><span className="brand-mark"><ChefHat size={20} /></span><span>Natal <i>à mesa</i></span></a>
+        <a className="brand" href="#inicio"><span className="brand-mark"><ChefHat size={20} /></span><span>150 Receitas <i>de Natal</i></span></a>
         <p>Receitas para reunir, presentear e celebrar.</p>
         <a href="#inicio">Voltar ao início ↑</a>
       </footer>
@@ -256,11 +302,11 @@ function Index() {
             <button className="modal-close" aria-label="Fechar oferta" onClick={() => setUpgradeOpen(false)}><X size={20} /></button>
             <div className="modal-icon"><Gift size={25} /></div>
             <span className="eyebrow">UMA OFERTA ESPECIAL PARA VOCÊ</span>
-            <h2 id="upgrade-title">Leve a coleção completa por apenas <em>mais R$ 13,00.</em></h2>
-            <p>Você já escolheu as 150 receitas. Adicione os cinco materiais extras e tenha tudo em um só pacote.</p>
-            <div className="modal-price-row"><span>Essencial <small>R$ 14,90</small></span><ArrowRight size={16} /><span>Completa <strong>R$ 27,90</strong></span></div>
-            <button className="button button-primary modal-main-cta" onClick={startCheckout}>Sim, quero a coleção completa <ArrowRight size={17} /></button>
-            <button className="modal-secondary" onClick={startCheckout}>Continuar com a Essencial por R$ 14,90</button>
+            <h2 id="upgrade-title">Leve a edição Premium por apenas <em>mais R$ 13,00.</em></h2>
+            <p>Você já escolheu as 150 receitas. Adicione os cinco bônus e leve o material completo.</p>
+            <div className="modal-price-row"><span>Básica <small>R$ 14,90</small></span><ArrowRight size={16} /><span>Premium <strong>R$ 27,90</strong></span></div>
+            <button className="button button-primary modal-main-cta" onClick={startCheckout}>Sim, quero a edição Premium <ArrowRight size={17} /></button>
+            <button className="modal-secondary" onClick={startCheckout}>Continuar com a Básica por R$ 14,90</button>
             <span className="modal-footnote"><ShieldCheck size={14} /> Pagamento único · garantia de 7 dias</span>
           </section>
         </div>

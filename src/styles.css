@@ -96,27 +96,41 @@ h1 em, h2 em { color: var(--red); font-weight: 500; }
 .recipe-count { margin-top: 25px; display: flex; justify-content: center; align-items: center; gap: 8px; color: #77796f; font-size: 10px; }
 .recipe-count svg { color: var(--red); }
 
-.video-section { padding: 68px max(5vw, calc((100vw - 1180px)/2)); background: var(--green); color: #fff; display: grid; grid-template-columns: .85fr 1.15fr; gap: 54px; align-items: center; }
-.video-copy .eyebrow { color: #c9d2bd; }
-.video-copy h2 { max-width: 410px; margin: 14px 0; color: #fff7e9; }
-.video-copy p { max-width: 390px; margin-bottom: 23px; color: #d2dbce; font-size: 12px; line-height: 1.8; }
-.button-light { background: #f4eddd; color: var(--green); }
-.button-light:hover { background: #fff; }
-.video-frame { position: relative; overflow: hidden; min-height: 320px; background: #192a20; border: 1px solid #ffffff25; border-radius: 5px; }
-.video-frame > img { position: absolute; width: 100%; height: 100%; inset: 0; object-fit: cover; opacity: .62; }
-.video-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 13px; color: white; font-size: 10px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; text-shadow: 0 2px 8px #0008; }
-.poster-note { padding: 10px 14px; display: inline-flex; align-items: center; gap: 7px; background: #20382bd9; color: #fff7e9; border: 1px solid #ffffff55; border-radius: 30px; font-size: 9px; font-weight: 600; letter-spacing: .06em; }
+.benefits-section { padding: 69px max(5vw, calc((100vw - 1180px)/2)); background: var(--green); color: #fff; }
+.benefits-title { margin-bottom: 28px; text-align: center; }
+.benefits-title .eyebrow { color: #d4c9aa; }
+.benefits-title h2 { margin: 12px 0 0; color: #fff7e9; font-family: "Cormorant Garamond", Georgia, serif; font-size: clamp(34px, 4vw, 45px); font-weight: 600; line-height: 1.08; }
+.benefits-title h2 em { color: #e8b8a6; }
+.benefits-grid { max-width: 1050px; margin: auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+.benefits-grid article { min-height: 113px; padding: 20px; display: flex; align-items: flex-start; gap: 14px; background: #ffffff0c; border: 1px solid #ffffff23; border-radius: 4px; }
+.benefit-icon { width: 36px; height: 36px; flex: 0 0 auto; display: grid; place-items: center; background: #ffffff15; border-radius: 50%; font-size: 17px; }
+.benefits-grid h3 { margin: 1px 0 6px; color: #fff5e6; font-family: "Cormorant Garamond", Georgia, serif; font-size: 21px; font-weight: 600; }
+.benefits-grid p { margin: 0; color: #d4dbd0; font-size: 10px; line-height: 1.65; }
+
+.testimonials-section { padding: 94px 30px 82px; background: linear-gradient(180deg, #fbf8f1 0%, #f0eee4 100%); }
+.testimonials-section .section-heading { margin-bottom: 34px; }
+.conversation-grid { max-width: 1010px; margin: auto; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 17px; align-items: start; }
+.conversation-card { margin: 0; overflow: hidden; background: #fff; border: 1px solid #e7e3d9; border-radius: 7px; box-shadow: 0 12px 32px #2d362515; }
+.conversation-image { padding: 7px 7px 0; background: #fff; }
+.conversation-image img { width: 100%; height: auto; aspect-ratio: 941 / 1672; object-fit: contain; border-radius: 4px; }
+.conversation-card figcaption { min-height: 39px; padding: 8px 9px; display: flex; justify-content: center; align-items: center; gap: 6px; color: #71766c; font-size: 8px; }
+.conversation-card figcaption svg { flex: 0 0 auto; color: var(--green); }
+.testimonial-disclaimer { max-width: 670px; margin: 17px auto 0; color: #88867c; font-size: 9px; line-height: 1.6; text-align: center; }
 
 .bonus-section { padding-top: 98px; padding-bottom: 101px; }
 .bonus-intro { max-width: 540px; margin-bottom: 35px; }
 .bonus-intro h2 { font-size: 42px; }
 .bonus-intro p { max-width: 440px; color: var(--muted); font-size: 12px; line-height: 1.75; }
-.bonus-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 13px; }
-.bonus-card { position: relative; padding: 12px 12px 14px; background: #f2efe7; border: 1px solid #ece7db; border-radius: 4px; }
-.bonus-image { overflow: hidden; background: #e4dfd2; }
-.bonus-image img { width: 100%; aspect-ratio: .87; object-fit: cover; }
-.bonus-number { position: absolute; top: 19px; left: 19px; padding: 5px 7px; background: #fbf8f1ed; color: var(--red); font-size: 8px; font-weight: 700; }
-.bonus-card h3 { min-height: 37px; margin: 12px 0 0; color: var(--green); font-family: "Cormorant Garamond", Georgia, serif; font-size: 17px; font-weight: 600; line-height: 1.05; }
+.bonus-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 13px; }
+.bonus-card { position: relative; padding: 10px 10px 14px; background: #f7f4ec; border: 1px solid #e7e0d3; border-radius: 4px; box-shadow: 0 8px 24px #3734260a; transition: transform .25s ease, box-shadow .25s ease; }
+.bonus-card:hover { transform: translateY(-4px); box-shadow: 0 15px 30px #37342617; }
+.bonus-image { overflow: hidden; background: #eee9dc; border: 1px solid #e9e3d8; }
+.bonus-image img { width: 100%; aspect-ratio: .78; object-fit: contain; }
+.bonus-number { position: absolute; top: 16px; left: 16px; padding: 6px 8px; background: var(--red); color: #fff; font-size: 7px; font-weight: 700; letter-spacing: .08em; }
+.bonus-card h3 { min-height: 39px; margin: 12px 0 5px; color: var(--green); font-family: "Cormorant Garamond", Georgia, serif; font-size: 18px; font-weight: 600; line-height: 1.05; }
+.bonus-card p { min-height: 48px; margin: 0; color: #77796f; font-size: 9px; line-height: 1.6; }
+.bonus-included { margin-top: 11px; display: flex; align-items: center; gap: 5px; color: #71816e; font-size: 8px; font-weight: 700; }
+.bonus-included svg { color: var(--red); }
 
 .plans-section { padding: 91px 26px 73px; background: #f1eee5; }
 .plans-section .section-heading { margin-bottom: 34px; }
@@ -131,7 +145,7 @@ h1 em, h2 em { color: var(--red); font-weight: 500; }
 .price small { margin: 8px 4px 0 0; font-size: 17px; letter-spacing: 0; }
 .price sup { padding-top: 4px; font-size: 25px; letter-spacing: -.04em; }
 .payment-note { display: block; margin-top: 5px; color: #8b897e; font-size: 9px; }
-.plan-card ul { min-height: 139px; margin: 19px 0 21px; padding: 17px 0 0; border-top: 1px solid #e9e4d8; list-style: none; }
+.plan-card ul { min-height: 248px; margin: 19px 0 21px; padding: 17px 0 0; border-top: 1px solid #e9e4d8; list-style: none; }
 .plan-card li { margin: 0 0 12px; display: flex; align-items: flex-start; gap: 9px; color: #545d51; font-size: 10px; line-height: 1.35; }
 .plan-card li svg { flex: 0 0 auto; color: var(--red); }
 .plan-button { width: 100%; min-height: 46px; }
@@ -142,6 +156,17 @@ h1 em, h2 em { color: var(--red); font-weight: 500; }
 .guarantee { max-width: 810px; margin: 26px auto 0; display: flex; justify-content: center; align-items: center; gap: 10px; color: #737669; font-size: 10px; text-align: center; }
 .guarantee svg { flex: 0 0 auto; color: var(--green); }
 .guarantee strong { color: var(--green); }
+
+.faq-section { padding: 87px 24px 96px; background: #fff; }
+.faq-section .section-heading { margin-bottom: 30px; }
+.faq-list { max-width: 780px; margin: auto; display: grid; gap: 9px; }
+.faq-item { background: #f6f4ed; border: 1px solid #e9e5da; border-radius: 4px; transition: border-color .2s ease; }
+.faq-item[open] { border-color: #adb9a9; }
+.faq-item summary { min-height: 53px; padding: 14px 17px; display: flex; justify-content: space-between; align-items: center; gap: 15px; color: var(--green); cursor: pointer; list-style: none; font-size: 11px; font-weight: 700; }
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-plus { width: 23px; height: 23px; flex: 0 0 auto; display: grid; place-items: center; color: var(--red); border: 1px solid #ded6c8; border-radius: 50%; font-size: 16px; line-height: 1; transition: transform .2s ease; }
+.faq-item[open] .faq-plus { transform: rotate(45deg); }
+.faq-item p { margin: 0; padding: 0 17px 16px; color: #73776d; font-size: 10px; line-height: 1.75; }
 
 .site-footer { min-height: 99px; max-width: 1180px; margin: auto; padding: 21px 38px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
 .site-footer .brand { font-size: 19px; }
@@ -182,8 +207,10 @@ h1 em, h2 em { color: var(--red); font-weight: 500; }
   .hero-proof { gap: 6px; }
   .hero-proof small { max-width: 115px; line-height: 1.3; }
   .section-wrap { padding: 82px 28px; }
-  .video-section { padding: 55px 5vw; gap: 30px; }
-  .video-frame { min-height: 265px; }
+  .benefits-section { padding: 58px 5vw; }
+  .bonus-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .conversation-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 660px; }
+  .conversation-card { max-width: 280px; justify-self: center; }
 }
 @media (max-width: 640px) {
   .announcement { min-height: 32px; font-size: 8px; letter-spacing: .04em; }
@@ -212,25 +239,36 @@ h1 em, h2 em { color: var(--red); font-weight: 500; }
   .intro-strip span { width: calc(50% - 10px); font-size: 9px; }
   .section-wrap { padding: 66px 20px; }
   .section-heading { margin-bottom: 28px; }
-  .section-heading h2, .bonus-intro h2, .video-copy h2 { margin-top: 10px; font-size: 37px; }
+  .section-heading h2, .bonus-intro h2 { margin-top: 10px; font-size: 37px; }
   .section-heading p { font-size: 11px; }
   .recipe-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 12px; }
+  .recipe-card:last-child:nth-child(odd) { grid-column: 1 / -1; width: calc(50% - 6px); justify-self: center; }
   .recipe-image img { aspect-ratio: .83; }
   .recipe-caption { padding: 10px 2px 8px; }
   .recipe-caption h3 { font-size: 18px; }
   .recipe-count { margin-top: 20px; font-size: 9px; }
-  .video-section { padding: 54px 20px; grid-template-columns: 1fr; gap: 24px; }
-  .video-copy p { font-size: 11px; }
-  .video-frame { min-height: unset; aspect-ratio: 1.25; }
+  .benefits-section { padding: 52px 20px; }
+  .benefits-title h2 { font-size: 36px; }
+  .benefits-grid { grid-template-columns: 1fr; gap: 9px; }
+  .benefits-grid article { min-height: 88px; padding: 15px; }
+  .testimonials-section { padding: 65px 20px 59px; }
+  .conversation-grid { gap: 10px; }
+  .conversation-card figcaption { min-height: 34px; padding: 6px 4px; font-size: 7px; }
+  .testimonial-disclaimer { font-size: 8px; }
   .bonus-section { padding-top: 65px; padding-bottom: 67px; }
   .bonus-intro { margin-bottom: 24px; }
   .bonus-intro h2 { font-size: 36px; }
   .bonus-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
   .bonus-card { padding: 8px 8px 10px; }
-  .bonus-card:last-child { grid-column: 1 / -1; width: calc(50% - 5px); }
+  .bonus-card:last-child { grid-column: 1 / -1; width: calc(50% - 5px); justify-self: center; }
   .bonus-number { top: 14px; left: 14px; }
   .bonus-card h3 { min-height: 34px; margin-top: 8px; font-size: 15px; }
+  .bonus-card p { min-height: 58px; font-size: 8px; }
+  .bonus-included { font-size: 7px; }
   .plans-section { padding: 66px 18px 52px; }
+  .faq-section { padding: 65px 18px 75px; }
+  .faq-item summary { padding: 13px 12px; font-size: 10px; }
+  .faq-item p { padding: 0 12px 14px; }
   .plans-grid { max-width: 440px; grid-template-columns: 1fr; gap: 24px; }
   .plan-card { padding: 26px 23px 21px; }
   .plan-description { min-height: 0; }
